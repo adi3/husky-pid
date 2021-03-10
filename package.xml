@@ -4,11 +4,11 @@
   <version>0.0.0</version>
   <description>The husky_pid package</description>
 
-  <maintainer email="adsnghw@amazon.com">Adi Singh</maintainer>
   <license>Amazon Software License</license>
+  <maintainer email="adsnghw@amazon.com">Adi Singh</maintainer>
+  <url type="website">https://aws.amazon.com/robomaker/</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
   <build_depend>rospy</build_depend>
   <build_depend>std_msgs</build_depend>
   <build_depend>geometry_msgs</build_depend>
