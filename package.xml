@@ -4,8 +4,8 @@
   <version>0.0.0</version>
   <description>The husky_pid package</description>
 
-  <maintainer email="adisin8@gmail.com">Adi Singh</maintainer>
-  <license>TODO</license>
+  <maintainer email="adsnghw@amazon.com">Adi Singh</maintainer>
+  <license>Amazon Software License</license>
 
   <buildtool_depend>catkin</buildtool_depend>
   
