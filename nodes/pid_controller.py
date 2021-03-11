@@ -35,13 +35,16 @@ class PID:
 
     def update_control(self, current_error, reset_prev=False):
     	# Proportional control
+    	# P = Kp * e
         p_control = self.Kp * self.curr_error
 
         # Integral control
+        # I = Ki * sum(e)
         self.sum_error += (self.curr_error) * self.dt
         i_control = self.sum_error * self.Ki
         
         # Derivative control
+        # D = Kd * d(e)/dt
         self.curr_error_deriv = (self.curr_error - self.prev_error) / self.dt
         d_control = self.Kd * self.curr_error_deriv
 
@@ -81,7 +84,6 @@ class Control:
         # compute cross-track error
         cte_pub = rospy.Publisher('/cte', Float32, queue_size=1000)
         
-        cte = min(msg.ranges) - self.pid.desired_distance
         cte = self.pid.desired_distance - min(msg.ranges)
         
         cte_pub.publish(cte)
