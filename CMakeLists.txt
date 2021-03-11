@@ -6,6 +6,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   sensor_msgs
+  gazebo_ros
   husky_gazebo
   dynamic_reconfigure
 )
@@ -22,6 +23,6 @@ install(PROGRAMS
 )
 
 install(
-  DIRECTORY launch rviz worlds
+  DIRECTORY launch rviz worlds models
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

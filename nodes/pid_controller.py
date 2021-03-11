@@ -72,7 +72,7 @@ class Control:
         self.laser_sub = rospy.Subscriber("/scan", LaserScan, self.laser_scan_callback)
 
         # PID init with dynamic reconfigure
-        self.pid = PID(1.3, 3.0, 0.01, 0.2)
+        self.pid = PID(0, 0, 0, 0.2)
         self.pid.desired_distance = self.desired_distance
         srv = Server(PIDConfig, self.pid.srv_callback)
 
@@ -80,7 +80,10 @@ class Control:
     def laser_scan_callback(self, msg):
         # compute cross-track error
         cte_pub = rospy.Publisher('/cte', Float32, queue_size=1000)
+        
         cte = min(msg.ranges) - self.pid.desired_distance
+        cte = self.pid.desired_distance - min(msg.ranges)
+        
         cte_pub.publish(cte)
         
         # This is where the magic happens!

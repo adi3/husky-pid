@@ -1,13 +1,21 @@
 <launch>
   <arg name="world_name" default="husky_pid"/>
   
-  <include file="$(find husky_gazebo)/launch/husky_empty_world.launch">
-    <arg name="world_name" value="$(find husky_pid)/worlds/$(arg world_name).world"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find husky_pid)/worlds/$(arg world_name).world"/>=
   </include>
+  
+  <include file="$(find husky_gazebo)/launch/spawn_husky.launch">
+    <arg name="laser_enabled" value="true"/>
+    <arg name="x" value="-5.5"/>
+    <arg name="y" value="-15"/>
+    <arg name="z" value="0.235"/>
+  </include>
+  
 
   <node pkg="husky_pid" type="pid_controller.py" output="screen" name="pid_controller">
-    <param name="forward_speed" value="1.0" />
-    <param name="desired_distance" value="3.0" />
+    <param name="forward_speed" value="1" />
+    <param name="desired_distance" value="1.75" />
   </node>
   
   <node pkg="tf" type="static_transform_publisher" name="odom_to_world" 
