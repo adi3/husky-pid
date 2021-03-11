@@ -85,7 +85,6 @@ class Control:
         cte_pub = rospy.Publisher('/cte', Float32, queue_size=1000)
         
         cte = self.pid.desired_distance - min(msg.ranges)
-        
         cte_pub.publish(cte)
         
         # This is where the magic happens!
